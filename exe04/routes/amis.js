@@ -26,3 +26,5 @@ const generateHtml = (tpl,json) =>{
     // return htmlStr
     return tpl.replace('%friends%',JSON.parse(json).map(item =>item.name).join('</li><li>'))
 }
+
+// fichier json ==> fichier string (caracter (lettres ou chiffres))

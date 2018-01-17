@@ -5,3 +5,4 @@ module.exports = (req,res) =>{
         res.end(data)
     })
 }
+// cwd= l'endroit où s'execute le process

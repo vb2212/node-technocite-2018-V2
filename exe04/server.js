@@ -1,6 +1,6 @@
 //██████████ création server web ██████████
 // const http = require('http')
-// const fs = require('fs')
+// const fs = require('fs') fs=file system
 
 // http.createServer((req,res)=>{
 //     console.log ('We have received a request !!!!!')
@@ -21,10 +21,10 @@ const routes = [
     {url: '/amis', controller: 'amis'}
 ]
 const router = (req, res) => {
-    let indexRoute = routes.findIndex(item => item.url === req.url)
-    if (indexRoute !== -1) {
-        require(`./routes/${routes[indexRoute].controller}`)(req,res)
-    }else {
+    let indexRoute = routes.findIndex(item => item.url === req.url) // cherche l'url taper est égal à celle du tableau
+    if (indexRoute !== -1) { // si elle est dans le tableau excute ↓
+        require(`./routes/${routes[indexRoute].controller}`)(req,res) // en bleu : inscrit ce qui est dans controller, si about note about
+    }else { // si pas ça ↓
         require('./routes/error')(req,res)
     }
 }
