@@ -3,6 +3,8 @@ const app = express()
 const routes = require(`${process.cwd()}/routes`)
 const hbs = require('express-hbs')
 const bodyParser = require('body-parser')
+const helpers = require('./helpers') // . = ${process.cwd()}
+const expressValidator = require('express-validator')
 
 // app.get('/',(req,res)=>{
 //     res.send('hello world')
@@ -17,11 +19,15 @@ app.engine('hbs',hbs.express4({
 }))
 app.set('view engine','hbs')
 app.set('views',`${__dirname}/views`)
+
+helpers.registerHelpers(hbs)
 // setup static folder for static rendering on my server side
 app.use(express.static(`${__dirname}/public`))
 // setup express to manage the raw requests and turn them into usable properties of req.body
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
+// validator
+app.use(expressValidator())
 
 app.use('/',routes)
 

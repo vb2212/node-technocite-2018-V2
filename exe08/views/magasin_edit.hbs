@@ -1,7 +1,14 @@
-<h2>Add Magasin</h2>
+<h2>
+    {{#if magasin.name}}
+        Edit
+    {{else}}
+        Add
+    {{/if}} 
+        Magasin
+</h2>
 
 {{!-- form#monId ou form.maClass--}}
-<form action="/magasins/add" class="card" method="POST" enctype="multipart/form-data">
+<form action="/magasins/add/{{magasin._id}}" class="card" method="POST" enctype="multipart/form-data">
     <label for="name">
         Name :
         <input type="text" name="name" id="name" valeur="{{magasin.name}}">
@@ -18,6 +25,24 @@
         Description :
         <textarea name="description" id="description">{{magasin.description}}</textarea>
     </label>
+
+    <label for="location[address]">
+        Addresse :
+        <input type="text" name="location[address]" id="address" value="{{magasin.location.address}}"></input>
+    </label>
+
+    <label for="location[coordinates][0]">
+        Longitude :
+        <input type="text" name=location[coordinates][0] id="lng" value="{{magasin.location.coordinates.[0]}}"></input>
+    </label>
+
+    <label for="location[coordinates][1]">
+        Latitude :
+        <input type="text" name=location[coordinates][1] id="lat" value="{{magasin.location.coordinates.[1]}}"></input>
+    </label>
+
+
+
     <input type="submit" name="Ajout du magasin">
 
 </form>

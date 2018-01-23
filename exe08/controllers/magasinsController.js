@@ -7,7 +7,7 @@ exports.addMagasin=(req,res)=>{
     res.render('magasin_edit',{magasin:{}})
 }
 
-exports.createMagasin= async (req,res) =>{
+exports.createMagasin = async (req,res) =>{
     const magasin = await new Magasin(req.body).save()
     res.redirect('/')
 }
@@ -17,6 +17,17 @@ exports.getMagasinBySlug = async (req,res) =>{
     const magasin = await Magasin.findOne({slug : req.params.slug})
     res.render('magasin_details',{magasin:magasin})
     // console.log(magasin)
+}
+
+exports.editMagasins = async (req,res) =>{
+    const magasin = await Magasin.findOne({_id:req.params.id})
+    if(!magasin) return next()
+    res.render('magasin_edit',{"magasin":magasin})
+}
+
+exports.updateMagasin = async (req, res) =>{
+    const magasin = await Magasin.findByIdAndUpdate({_id : req.params.id}, req.body,{new:true}).exec()
+    res.redirect(`/magasins/${magasin.slug}`)
 }
 
 const multerOptions = {

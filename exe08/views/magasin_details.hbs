@@ -1,4 +1,5 @@
 <div class="single">
+    <a href="/magasins/{{magasin.id}}/edit">edit</a>
     <div class="single__hero">
         <img src="/uploads/{{magasin.photo}}" alt="{{magasin.description}}"class="single__image">
         <h2 class="title title--single">
@@ -6,6 +7,7 @@
         </h2>
     </div>
     <div class="single__details inner">
+        <img src="{{staticMap magasin.location.coordinates}}" alt="" class="single__map">
         <p class="single__location">
             {{magasin.description}}
         </p>
